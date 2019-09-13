@@ -9,7 +9,7 @@ const reducer = (state, action) => {
       posts: action.payload,
       loading: false
     };
-  } 
+  }  
   return state;
 } 
 

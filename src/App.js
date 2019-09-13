@@ -3,6 +3,7 @@ import './App.css';
 import Posts from './components/Posts';
 
 function App() {
+  const numPosts = parseInt(prompt('Ingresa el numero de posts que quieres ver'));
   return (    
     <React.Fragment>
       <div className="container">      
@@ -10,7 +11,7 @@ function App() {
           <div className="imageContainer">
             <img src='http://ideaware.co/wp-content/uploads/2018/02/logolb.png' alt=""></img>
           </div>
-          <Posts />
+          <Posts url={`http://api.massrelevance.com/MassRelDemo/kindle.json`} numPosts={numPosts}/>
         </div>
       </div>
       <footer className="footer">

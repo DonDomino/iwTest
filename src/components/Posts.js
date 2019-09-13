@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadPosts } from '../actionCreators';
 
-const url = 'http://api.massrelevance.com/MassRelDemo/kindle.json', numPosts = 10;
-
 class Posts extends Component{  
   render(){
     return (
@@ -25,7 +23,14 @@ class Posts extends Component{
   }
 
   componentDidMount(){
-    this.props.loadPosts();
+    let { url, loadPosts, numPosts } = this.props;
+    let init = 0;
+    this.props.loadPosts(url, numPosts, init);
+      setInterval(() => {
+        init += numPosts;
+        numPosts += numPosts;
+        loadPosts(url, numPosts, init); 
+      }, 20000);    
   }
 }
 
@@ -34,12 +39,8 @@ const mapStateToProps = state => ({
   loading: state.loading
 });
     
-const mapDispatchToProps = dispatch => {
-  return {
-    loadPosts(){
-      dispatch(loadPosts(url, numPosts));
-    }
-  }
+const mapDispatchToProps = {  
+  loadPosts
 }
-
+  
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

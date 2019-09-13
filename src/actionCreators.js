@@ -1,6 +1,6 @@
 import moment from "moment";
 
-const loadPosts = (url, numPosts) => {
+const loadPosts = (url, numPosts, init) => {
   return dispatch => {
     return fetch(url)
     .then(response => response.json())
@@ -10,7 +10,7 @@ const loadPosts = (url, numPosts) => {
       })
       dispatch({
         type: 'SET_POSTS',
-        payload: data.reverse().slice(0,numPosts)
+        payload: data.reverse().slice(init,numPosts)
       });
     });
   }
